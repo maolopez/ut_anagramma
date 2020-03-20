@@ -26,7 +26,7 @@ def adder_page():
             anagrammas = []
             file_words = []
             anagrams = permutas(permutas, word)
-            do_text_to_list(file_words)
+            do_text_to_list(word, file_words)
             for anagram in anagrams:
                 for file_word in file_words:
                     if anagram == file_word:

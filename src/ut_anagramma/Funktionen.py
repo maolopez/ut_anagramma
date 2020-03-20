@@ -22,15 +22,17 @@ def too_long(w):
     else:
         pass                           
 
-def do_text_to_list(f):
+def do_text_to_list(w, f):
     """
     Make a list of the filename
     """
     filename = "words.txt"
     with open(filename) as file_object:
         lines = file_object.readlines()
+        file_object.close()
     for line in lines:
-        f.append(line.rstrip())
+        if len(line) == len(w) +1:
+            f.append(line.rstrip())
     return f
     
 def permutas(permutas, p):
@@ -39,5 +41,4 @@ def permutas(permutas, p):
     """
     permutas = ["".join(perm) for perm in more_itertools.distinct_permutations(p)]
     permutas = unique(permutas)
-    permutas = sorted(permutas)
     return permutas

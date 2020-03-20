@@ -18,7 +18,7 @@ word = input(f"Introduce the English word: ")
 too_long(word)
 iterate(word)
 anagrams = permutas(permutas, word)
-do_text_to_list(file_words)
+do_text_to_list(word, file_words)
 find_anagrammas(anagrammas, anagrams)
 
 print(anagrammas)
