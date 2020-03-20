@@ -31,18 +31,5 @@ def adder_page():
             return render_template("error.html")
     return render_template("home.html")
 
-
-     
-#introduce the word and iterate in order to create a list of unique permutations    
-#word = input(f"Introduce the English word: ")
-#adder_page(word)
-#iterate(word)
-#anagrams = permutas(permutas, word)
-#do_text_to_list(file_words)
-#find_anagrammas(anagrammas, anagrams)
-
-#print(anagrammas)
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=8080, debug=True)
-
-         
