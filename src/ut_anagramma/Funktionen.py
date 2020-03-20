@@ -10,7 +10,17 @@ def iterate(w):
             print(f"Do not introduce spaces, numbers or alphanumeric characters")
             exit()
         else:
-            pass            
+            pass 
+            
+def too_long(w):
+    """
+    Does not allow too long strings
+    """
+    if len(w) >= 14:
+        print(f"I don't know a word that long. Please try a shorter one")
+        exit()
+    else:
+        pass                           
 
 def do_text_to_list(f):
     """
