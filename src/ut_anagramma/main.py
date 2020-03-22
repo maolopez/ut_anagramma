@@ -1,4 +1,4 @@
-from Funktionen import do_text_to_list, permutas, iterate, too_long
+from Funktionen import do_text_to_list, iterate, too_long, anagramSolution4
 from flask import Flask, request, render_template
     
 app = Flask(__name__)
@@ -25,12 +25,10 @@ def adder_page():
         if word is not None:
             anagrammas = []
             file_words = []
-            anagrams = permutas(permutas, word)
             do_text_to_list(word, file_words)
-            for anagram in anagrams:
-                for file_word in file_words:
-                    if anagram == file_word:
-                        anagrammas.append(anagram)
+            for file_word in file_words:
+                if anagramSolution4(word,file_word) == True:
+                    anagrammas.append(file_word)
             return render_template("result.html").format(result=anagrammas)
         else:
             return render_template("error.html")
