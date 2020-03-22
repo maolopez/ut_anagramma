@@ -12,6 +12,6 @@ setup(
     author_email='maurizio.school@gmail.com',
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    install_requires=['flask', 'more_itertools', 'numpy' ],
+    install_requires=['flask'],
     entry_points={'console_scripts': ['ut_anagramma=ut_anagramma.main:adder_page',]}
 )
