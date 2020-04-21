@@ -1,4 +1,4 @@
-from Funktionen import do_text_to_list, iterate, too_long, anagramSolution4
+from Funktionen import cjk_detect, do_text_to_list, iterate, too_long, anagramSolution4
 from flask import Flask, request, render_template
     
 app = Flask(__name__)
@@ -14,6 +14,14 @@ def adder_page():
         word = None
         try:
             word = request.form["word"]
+            if cjk_detect(word) is None:
+               pass
+            if cjk_detect(word) == "ko":
+               return render_template("no_english.html")    
+            if cjk_detect(word) == "ja":
+               return render_template("no_english.html") 
+            if cjk_detect(word) == "zh":
+               return render_template("no_english.html")
             too_long(word)
         except:
             return render_template("too_long.html")
