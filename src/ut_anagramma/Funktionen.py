@@ -1,7 +1,8 @@
+import re
 
 def iterate(w):
     """
-    iterate trhough word's characters looking for numbers and spaces
+    iterate through word's characters looking for numbers and spaces
     """
     for i in w:
         if i.isalpha() == False:
@@ -56,3 +57,18 @@ def anagramSolution4(s1,s2):
             stillOK = False
     
     return stillOK
+
+def cjk_detect(texts):
+    '''
+    Extracted from https://gist.github.com/ceshine/1f8cd81ce34d89f1429d0928c28d97e4
+    '''
+    # korean
+    if re.search("[\uac00-\ud7a3]", texts):
+        return "ko"
+    # japanese
+    if re.search("[\u3040-\u30ff]", texts):
+        return "ja"
+    # chinese
+    if re.search("[\u4e00-\u9FFF]", texts):
+        return "zh"
+    return None
