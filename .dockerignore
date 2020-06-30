@@ -1,0 +1,8 @@
+.gitignore
+LICENSE
+Makefile
+Pipfile
+Pipfile.lock
+README.rst
+setup.cfg
+setup.py
