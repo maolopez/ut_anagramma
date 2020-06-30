@@ -24,3 +24,8 @@ Deploying the application in GCP App Engine Standard
 3. The development server is now running and listening for requests on port 8080.
 4. From src/ut_anagramma/ where the app's app.yaml: gcloud app deploy
 5. To launch your browser: gcloud app browse
+
+Docker support
+--------------
+
+docker run -it --name anagrama -p 8080:8080 Image_ID
