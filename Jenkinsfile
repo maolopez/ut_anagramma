@@ -1,10 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('checkout') {
-          deleteDir()
-          checkout scm
-        }
         stage('Build Docker Image') {
             when {
                 branch 'develop'
