@@ -13,5 +13,4 @@ RUN cp -f requirements.txt /src/ut_anagramma/requirements.txt && \
 WORKDIR /src/ut_anagramma
 
 EXPOSE 8082
-ENTRYPOINT ["python"]
-CMD ["./main.py"]
+CMD ["python", "./main.py"]
