@@ -24,9 +24,6 @@ pipeline {
                         app.push("latest")
                     }
         stage ('DeployToProduction') {
-            if {
-                branch 'develop'
-            }
             steps {
                 input 'Deploy to Production'
                 milestone(1)
