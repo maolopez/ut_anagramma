@@ -23,7 +23,10 @@ pipeline {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
                         app.push("latest")
                     }
-        stage ('DeployToProduction') {
+        stage('DeployToProduction') {
+            when {
+                branch 'develop'
+            }
             steps {
                 input 'Deploy to Production'
                 milestone(1)
