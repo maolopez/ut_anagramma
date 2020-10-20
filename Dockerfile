@@ -12,6 +12,5 @@ RUN cp -f requirements.txt /src/ut_anagramma/requirements.txt && \
 # Define app directory
 WORKDIR /src/ut_anagramma
 
-EXPOSE 8080
-ENTRYPOINT ["python"]
-CMD ["./main.py"]
+EXPOSE 8082
+CMD ["python", "./main.py"]
