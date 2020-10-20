@@ -24,7 +24,7 @@ pipeline {
                         app.push("latest")
                     }
         stage ('DeployToProduction') {
-            when {
+            if {
                 branch 'develop'
             }
             steps {
