@@ -40,6 +40,7 @@ pipeline {
                             echo: 'caught error: $err'
                         }
                         sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@prod_ip \"docker run --restart always --name ut_anagramma -p 8082:8082 -d maolopez/ut_anagramma:latest\""
+                        }
                     }
                 }
             }
