@@ -18,11 +18,18 @@ pipeline {
             when {
                 branch 'develop'
             }
-            script {
+            steps {            
+                script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
                         app.push("latest")
                     }
+                }
+            }
+        }
         stage('DeployToProduction') {
+        	when {
+                 branch 'develop'
+            }
             steps {
                 input 'Deploy to Production'
                 milestone(1)
