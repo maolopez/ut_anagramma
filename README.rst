@@ -30,4 +30,4 @@ Docker support
 
 https://hub.docker.com/repository/docker/maolopez/ut_anagramma
 docker pull maolopez/ut_anagramma:latest
-docker run -it --name anagrama -p 8082:8082 Image_ID
+docker run --restart always --name ut_anagramma -p 8082:8082 -d maolopez/ut_anagramma:latest
