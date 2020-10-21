@@ -18,11 +18,32 @@ pipeline {
             when {
                 branch 'develop'
             }
-            steps {
+            steps {            
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
-                        app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
+                    }
+                }
+            }
+        }
+        stage('DeployToProduction') {
+        	when {
+                 branch 'develop'
+            }
+            steps {
+                input 'Deploy to Production'
+                milestone(1)
+                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'ec2sshkey', \
+                                             keyFileVariable: 'Key')]) {
+                   script {
+                       sh "ssh -i $Key -o StrictHostKeyChecking=no ec2-user@${prod_ip} \"sudo docker pull maolopez/ut_anagramma:latest\""
+                       try {
+                          sh "ssh -i $Key -o StrictHostKeyChecking=no ec2-user@${prod_ip} \"sudo docker stop ut_anagramma\""
+                          sh "ssh -i $Key -o StrictHostKeyChecking=no ec2-user@${prod_ip} \"sudo docker rm ut_anagramma\""
+                        } catch (err) {
+                            echo: 'caught error: $err'
+                        }
+                        sh "ssh -i $Key -o StrictHostKeyChecking=no ec2-user@${prod_ip} \"sudo docker run --restart always --name ut_anagramma -p 8082:8082 -d maolopez/ut_anagramma:latest\""
                     }
                 }
             }
