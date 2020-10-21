@@ -34,18 +34,16 @@ pipeline {
                 input 'Deploy to Production'
                 milestone(1)
                 withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'ec2sshkey', \
-                                             keyFileVariable: 'Key', \
-                                             passphraseVariable: '', \
-                                             usernameVariable: 'ec2-user')]) {
+                                             keyFileVariable: 'Key')]) {
                    script {
-                       sh "ssh -i $Key -o StrictHostKeyChecking=no $usernameVariable@prod_ip \"docker pull maolopez/ut_anagramma:latest\""
+                       sh "ssh -i $Key -o StrictHostKeyChecking=no ec2-user@prod_ip \"docker pull maolopez/ut_anagramma:latest\""
                        try {
-                          sh "ssh -i $Key -o StrictHostKeyChecking=no $usernameVariable@prod_ip \"docker stop ut_anagramma\""
-                          sh "ssh -i $Key -o StrictHostKeyChecking=no $usernameVariable@prod_ip \"docker rm ut_anagramma\""
+                          sh "ssh -i $Key -o StrictHostKeyChecking=no ec2-user@prod_ip \"docker stop ut_anagramma\""
+                          sh "ssh -i $Key -o StrictHostKeyChecking=no ec2-user@prod_ip \"docker rm ut_anagramma\""
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sh "ssh -i $Key -o StrictHostKeyChecking=no $usernameVariable@prod_ip \"docker run --restart always --name ut_anagramma -p 8082:8082 -d maolopez/ut_anagramma:latest\""
+                        sh "ssh -i $Key -o StrictHostKeyChecking=no ec2-user@prod_ip \"docker run --restart always --name ut_anagramma -p 8082:8082 -d maolopez/ut_anagramma:latest\""
                     }
                 }
             }
