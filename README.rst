@@ -1,10 +1,9 @@
 Ut Anagramma
 ============
 
-Internet-facing web service accepting a single word and deriving all possible anagrams. (not permutations)
-
-The application can be deployed into Google Cloud App Engine Standard.
-
+Internet-facing web service accepting a single word and deriving all possible anagrams. (not permutations). The application can be deployed into Google Cloud App Engine Standard.
+ 
+https://mauricio-271700.appspot.com
 
 Usage
 -----
