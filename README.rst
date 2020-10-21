@@ -19,15 +19,24 @@ The real script running with Flask is main.py
 Deploying the application in GCP App Engine Standard
 ----------------------------------------------------
 
-1. Enable Google App Engine Admin API
+1. Enable Google App Engine Admin API.
 2. From src/ut_anagramma/ where the app's app.yaml: dev_appserver.py app.yaml
 3. The development server is now running and listening for requests on port 8082.
-4. From src/ut_anagramma/ where the app's app.yaml: gcloud app deploy
-5. To launch your browser: gcloud app browse
+4. From src/ut_anagramma/ where the app's app.yaml: gcloud app deploy.
+5. To launch your browser: gcloud app browse.
 
 Docker support
 --------------
 
 https://hub.docker.com/repository/docker/maolopez/ut_anagramma
+
 docker pull maolopez/ut_anagramma:latest
+
 docker run --restart always --name ut_anagramma -p 8082:8082 -d maolopez/ut_anagramma:latest
+
+Deploying the application in AWS with Jenkins
+---------------------------------------------
+
+1. There is a manual option deployment in the pipeline.
+2. Get some CloudFormation stack from https://github.com/maolopez/PipelineOnTheFly.
+3. Get Docker plugins for Jenkins and Docker installed in your destination server.
