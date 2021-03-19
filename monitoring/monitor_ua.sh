@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#Variables
+FILE="curl-format.txt"
+STRING=`ls ${FILE}`
+WEB="https://mauricio-271700.appspot.com/"
+HTTPS=`curl -I ${WEB} | grep -i http | awk '{print $2}'`
+
+#function
+
+evaluate_connectivity() {
+    if [[ ${TIME_NAMELOOKUP} > 0.5 ]]; then 
+        echo "WARNING DNS resolution slow: ${TIME_NAMELOOKUP} seconds"
+    fi
+    if [[ ${TIME_REDIRECT} > 0.5 ]]; then
+       echo "WARNING stuck in redirections: ${TIME_REDIRECT} seconds"
+    fi
+    if [[ ${TIME_TOTAL} > 1 ]]; then
+       echo "WARNING latency: ${TIME_TOTAL} seconds"
+       cat ${time}.txt
+    fi
+}
+
+ 
+#Script
+#Make sure you have @curl-format.txt
+if [[ -n ${STRING} ]]; then
+   echo "There is ${FILE} here"
+else
+   echo "there is nothing here, creating ${FILE}"
+   echo "time_namelookup:  %{time_namelookup}\n" >> ${FILE}
+   echo "time_connect:  %{time_connect}\n" >> ${FILE}  
+   echo "time_appconnect:  %{time_appconnect}\n" >> ${FILE}
+   echo "time_pretransfer:  %{time_pretransfer}\n" >> ${FILE}
+   echo "time_redirect:  %{time_redirect}\n" >> ${FILE}
+   echo "time_starttransfer:  %{time_starttransfer}\n" >> ${FILE}
+   echo "----------\n" >> ${FILE}
+   echo "time_total:  %{time_total}\n" >> ${FILE}
+fi
+
+echo "Evaluating basic connectivity"
+
+if [[ ${HTTPS} -eq 200 ]]; then
+   echo "O.K."
+elif [[ ${HTTPS} -eq 500 ]]; then
+   echo "ALERT: Your App is DOWN!!!"  
+elif [[ ${HTTPS} -eq 400 ]]; then
+   echo "ALERT: Your App is DOWN!!!"
+elif [[ ${HTTPS} -eq 401 ]]; then
+   echo "WARNING: Yoou are UNAUTHORIZED!!!" 
+elif [[ ${HTTPS} -eq 403 ]]; then
+   echo "WARNING: You are FORBIDDEN!!!"     
+else 
+    time=`date --rfc-3339=seconds | sed 's/ /T/'`
+    curl -w "@${FILE}" -o /dev/null -s ${WEB} > ${time}.txt
+    TIME_NAMELOOKUP=`cat ${time}.txt | grep time_namelookup | awk '{print $2}'`
+    TIME_CONNECT=`cat ${time}.txt | grep time_connect | awk '{print $2}'`
+    TIME_APPCONNECT=`cat ${time}.txt | grep time_appconnect | awk '{print $2}'`
+    TIME_PRETRANSFER=`cat ${time}.txt | grep time_pretransfer | awk '{print $2}'`
+    TIME_REDIRECT=`cat ${time}.txt | grep time_redirect | awk '{print $2}'`
+    TIME_STARTTRANSFER=`cat ${time}.txt | grep time_starttransfer | awk '{print $2}'`
+    TIME_TOTAL=`cat ${time}.txt | grep time_total | awk '{print $2}'`
+    evaluate_connectivity
+fi    
+
+
