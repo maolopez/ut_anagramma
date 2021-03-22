@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 #Variables
 FILE="curl-format.txt"
@@ -16,8 +16,8 @@ evaluate_connectivity() {
     fi
     if [[ ${TIME_REDIRECT} > 0.5 ]]; then
        echo "WARNING stuck in redirections: ${TIME_REDIRECT} seconds"
-        echo ${MESSAGE}
-        notify_slack       
+       echo ${MESSAGE}
+       notify_slack       
     fi
     if [[ ${TIME_TOTAL} > 1 ]]; then
        MESSAGE="WARNING latency: ${TIME_TOTAL} seconds"
@@ -32,7 +32,7 @@ notify_slack() {
     webhook="REPLACE ME with a Jenkin's variable that contains and Slack's webhook'"
     curl -X POST --data-urlencode "payload={\"channel\": \"#random\", \"username\": \"webhookbot\", \"text\": \"${MESSAGE}\", \"icon_emoji\": \":ghost:\"}" ${webhook}
    }
- 
+
 #Script
 #Make sure you have @curl-format.txt
 if [[ -n ${STRING} ]]; then
@@ -68,7 +68,7 @@ elif [[ ${HTTPS} -eq 401 ]]; then
 elif [[ ${HTTPS} -eq 403 ]]; then
    MESSAGE="WARNING: You are FORBIDDEN!!!" 
    echo ${MESSAGE}
-   notify_slack    
+   notify_slack
 else 
     time=`date --rfc-3339=seconds | sed 's/ /T/'`
     curl -w "@${FILE}" -o /dev/null -s ${WEB} > ${time}.txt
