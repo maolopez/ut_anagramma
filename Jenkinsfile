@@ -28,7 +28,7 @@ pipeline {
         }
         stage('DeployToProduction') {
         	when {
-                 branch 'develop'
+                 branch 'master'
             }
             steps {
                 input 'Deploy to Production'
