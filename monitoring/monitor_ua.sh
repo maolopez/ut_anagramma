@@ -29,7 +29,7 @@ evaluate_connectivity() {
 }
 
 notify_slack() {
-    #"REPLACE webhook with a Jenkin's variable that contains and Slack's webhook'"
+    #REPLACE webhook with a Jenkin's variable that contains and Slack's webhook
     webhook=${webhook}
     curl -X POST --data-urlencode "payload={\"channel\": \"#random\", \"username\": \"webhookbot\", \"text\": \"${MESSAGE}\", \"icon_emoji\": \":ghost:\"}" ${webhook}
    }
