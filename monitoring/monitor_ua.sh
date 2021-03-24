@@ -52,7 +52,13 @@ fi
 
 echo "Evaluating basic connectivity"
 
-if [[ ${HTTPS} -eq 200 ]]; then
+
+if [[ -z ${HTTPS} ]]; then
+   time=`date --rfc-3339=seconds | sed 's/ /T/'`
+   curl -I --silent -S ${WEB} --stderr ${time}.txt
+   MESSAGE=`cat ${time}.txt`
+   notify_slack 
+elif [[ ${HTTPS} -eq 200 ]]; then
    echo "O.K."
 elif [[ ${HTTPS} -eq 500 ]]; then
    MESSAGE="ALERT: Your App is DOWN!!!"
