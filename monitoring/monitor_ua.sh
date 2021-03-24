@@ -58,6 +58,7 @@ if [[ -z ${HTTPS} ]]; then
    curl -I --silent -S ${WEB} --stderr ${time}.txt
    MESSAGE=`cat ${time}.txt`
    notify_slack 
+   exit 0
 elif [[ ${HTTPS} -eq 200 ]]; then
    echo "O.K."
 elif [[ ${HTTPS} -eq 500 ]]; then
