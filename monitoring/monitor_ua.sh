@@ -29,7 +29,8 @@ evaluate_connectivity() {
 }
 
 notify_slack() {
-    webhook="REPLACE ME with a Jenkin's variable that contains and Slack's webhook'"
+    #REPLACE webhook with a Jenkin's variable that contains and Slack's webhook
+    webhook=${webhook}
     curl -X POST --data-urlencode "payload={\"channel\": \"#random\", \"username\": \"webhookbot\", \"text\": \"${MESSAGE}\", \"icon_emoji\": \":ghost:\"}" ${webhook}
    }
 
@@ -51,7 +52,14 @@ fi
 
 echo "Evaluating basic connectivity"
 
-if [[ ${HTTPS} -eq 200 ]]; then
+
+if [[ -z ${HTTPS} ]]; then
+   time=`date --rfc-3339=seconds | sed 's/ /T/'`
+   curl -I --silent -S ${WEB} --stderr ${time}.txt
+   MESSAGE=`cat ${time}.txt`
+   notify_slack 
+   exit 0
+elif [[ ${HTTPS} -eq 200 ]]; then
    echo "O.K."
 elif [[ ${HTTPS} -eq 500 ]]; then
    MESSAGE="ALERT: Your App is DOWN!!!"
