@@ -46,4 +46,3 @@ Deploying the application in GCP with GitLab
 1. There is a .gitlab-ci.yml file to support GitLab CI.
 2. More details in https://gitlab.com/maolopez1/ut_anagramma .
 3. More support in https://gitlab.com/maolopez1/ci_cd_terraform_and_gcp .
-
