@@ -50,3 +50,4 @@ Deploying the application in GCP with GitLab
 https://gitlab.com/maolopez1/kubernetes-for-gcp-with-terraform
 Note: If you know what are you doing, check the manifests files inside
 the kubernetes/ folder before running the manual pipeline stages.
+
