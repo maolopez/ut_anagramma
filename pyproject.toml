@@ -1,0 +1,58 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ut_anagramma"
+version = "0.2.0"
+description = "An internet-facing web service accepting a single word and deriving all possible anagrams."
+readme = "README.rst"
+requires-python = ">=3.6"
+license = {text = "Specify your license here"}
+authors = [
+    { name = "Maurizio Lopez", email = "maurizio.school@gmail.com" }
+]
+
+[project.urls]
+"Homepage" = "Your project's homepage URL"
+"Repository" = "Your repository URL"
+
+[project.dependencies]
+flask = "^1.1.1"
+
+[project.optional-dependencies]
+dev = [
+    "attrs==19.3.0",
+    "click==7.1.1",
+    "importlib-metadata==1.5.0",
+    "itsdangerous==1.1.0",
+    "Jinja2==2.11.3",
+    "MarkupSafe==1.1.1",
+    "packaging==20.3",
+    "pluggy==0.13.1",
+    "py==1.10.0",
+    "pyparsing==2.4.6",
+    "pytest==5.4.1",
+    "pytest-mock==2.0.0",
+    "six==1.14.0",
+    "wcwidth==0.1.8",
+    "Werkzeug==1.0.0",
+    "zipp==3.1.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ut_anagramma*"]
+
+[tool.setuptools]
+# Additional configurations for setuptools if needed
+
+[tool.setuptools.entry-points]
+console_scripts = [
+    "ut_anagramma = ut_anagramma.main:adder_page"
+]
+
+[tool.setuptools.dynamic]
+# Dynamically loaded settings if necessary, e.g., version, dependencies
