@@ -22,10 +22,9 @@ phases:
   build:
     commands:
       - echo Running tests...
-      - cd src/ut_anagramma
       - . venv/bin/activate  # Ensure the virtual environment is activated
       - pip install pytest  # Ensure pytest is installed
-      - python3 main_test.py  # Run your tests
+      - python3 src/ut_anagramma/main_test.py  # Run your tests
 
 artifacts:
   files:
