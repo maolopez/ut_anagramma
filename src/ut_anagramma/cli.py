@@ -27,5 +27,5 @@ for file_word in file_words:
         anagrammas.append(file_word)
 
 print(anagrammas)
-# test
+
 
