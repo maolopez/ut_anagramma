@@ -10,7 +10,6 @@ phases:
       python: 3.8  # Specify the Python version
     commands:
       - echo Installing dependencies...
-      - cd src/ut_anagramma 
       - python3 -m venv venv  # Create a virtual environment
       - . venv/bin/activate  # Activate the virtual environment
       - pip install wheel setuptools>=61.0
