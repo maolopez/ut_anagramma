@@ -40,7 +40,13 @@ Deploying the application in AWS with Jenkins
 2. Get some CloudFormation stack from https://github.com/maolopez/PipelineOnTheFly.
 3. Get Docker plugins for Jenkins and Docker installed in your destination server.
 
-Deploying the application in GCP with GitLab
+Deploying the application in AWS and EKS
+---------------------------------------------
+
+1. https://github.com/maolopez/aws-capstone 
+2. https://github.com/maolopez/aws-capstone-kubernetes
+
+Deploying the application in GCP/GKE with GitLab
 ---------------------------------------------
 
 1. There is a .gitlab-ci.yml file to support GitLab CI.
