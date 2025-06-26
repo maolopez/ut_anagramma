@@ -45,6 +45,7 @@ Deploying the application in AWS and EKS
 
 1. https://github.com/maolopez/aws-capstone 
 2. https://github.com/maolopez/aws-capstone-kubernetes
+3. https://github.com/maolopez/aws-capstone-pipeline
 
 Deploying the application in GCP/GKE with GitLab
 ---------------------------------------------
