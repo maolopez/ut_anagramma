@@ -1,4 +1,5 @@
-FROM python:3.6.9
+#FROM python:3.6.9
+FROM public.ecr.aws/lambda/python:3.8
 
 # Bundle app source
 COPY . /
