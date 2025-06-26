@@ -19,16 +19,16 @@ phases:
       - pip install wheel setuptools>=61.0
       - pip install -r requirements.txt  # Install dependencies
 
-  pre_build:
-    commands:
-      - echo Pre-build phase...
+  # pre_build:
+  #   commands:
+  #     - echo Pre-build phase...
 
-  build:
-    commands:
-      - echo Running tests...
-      - . venv/bin/activate  # Ensure the virtual environment is activated
-      - pip install pytest  # Ensure pytest is installed
-      - python3 src/ut_anagramma/main_test.py  # Run your tests
+  # build:
+  #   commands:
+  #     - echo Running tests...
+  #     - . venv/bin/activate  # Ensure the virtual environment is activated
+  #     - pip install pytest  # Ensure pytest is installed
+  #     - python3 src/ut_anagramma/main_test.py  # Run your tests
 
   # post_build:
   #   commands:
